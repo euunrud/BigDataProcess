@@ -1,5 +1,6 @@
 import openpyxl
 wb=openpyxl.load_workbook("student.xlsx")
+ws = wb['Sheet1']
 
 row_id = 1
 for row in ws:
