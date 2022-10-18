@@ -3,54 +3,6 @@ import openpyxl
 
 wb=openpyxl.load_workbook("student.xlsx")
 ws = wb['Sheet1']
-#
-row_id = 1
-for row in ws:
-        if row_id != 1:
-                sum = ws.cell(row=row_id, column=3).value * 0.3
-                sum += ws.cell(row=row_id, column=4).value *0.35
-                sum += ws.cell(row=row_id, column=5).value *0.34
-                sum += ws.cell(row=row_id, column=6).value
-                ws.cell(row=row_id, column=7).value = sum
-        #       print(sum,"sum")
-        row_id += 1
-
-row_id = 1
-scores=dict()
-for row in ws:
-        if row_id != 1:
-                score = ws.cell(row=row_id, column=7).value
-                if score not in scores:
-                        scores[score]=1
-                else:
-                      mport openpyxl
-
-wb=openpyxl.load_workbook("student.xlsx")
-ws = wb['Sheet1']
-
-row_id = 1
-for row in ws:
-        if row_id != 1:
-                sum = ws.cell(row=row_id, column=3).value * 0.3
-                sum += ws.cell(row=row_id, column=4).value *0.35
-                sum += ws.cell(row=row_id, column=5).value *0.34
-                sum += ws.cell(row=row_id, column=6).value
-                ws.cell(row=row_id, column=7).value = sum
-        #       print(sum,"sum")
-        row_id += 1
-
-row_id = 1
-scores=dict()
-for row in ws:
-        if row_id != 1:
-                score = ws.cell(row=row_id, column=7).value
-                if score not in scores:
-                        scores[score]=1
-                else:
-                      import openpyxl
-
-wb=openpyxl.load_workbook("student.xlsx")
-ws = wb['Sheet1']
 
 row_id = 1
 for row in ws:
