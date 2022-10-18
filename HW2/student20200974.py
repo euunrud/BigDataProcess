@@ -44,24 +44,24 @@ for i in range(len(scores)):
 #	print("sc",scores[i][1])
 	num+=scores[i][1]
 
-	if num <= row * 0.15 and num1 == 0:
-		if num + scores[i + 1][1] > row * 0.15:
+	if num < row * 0.15 and num1 == 0:
+		if num + scores[i + 1][1] >= row * 0.15:
 			num1 = 1
 			rslt['A+'] = scores[i][0]
-	elif num <= row * 0.3 and num2 == 0:
-		if num + scores[i + 1][1] > row * 0.3:
+	elif num < row * 0.3 and num2 == 0:
+		if num + scores[i + 1][1] >= row * 0.3:
 			num2 = 1
 			rslt['A0'] = scores[i][0]  
-	elif num <= row * 0.5 and num3 == 0:
-		if num + scores[i + 1][1] > row * 0.5:
+	elif num < row * 0.5 and num3 == 0:
+		if num + scores[i + 1][1] >= row * 0.5:
 			num3 = 1
 			rslt['B+'] = scores[i][0] 
-	elif num <= row * 0.7 and num4 == 0:
-		if num + scores[i + 1][1] > row * 0.7:
+	elif num < row * 0.7 and num4 == 0:
+		if num + scores[i + 1][1] >= row * 0.7:
 			num4 = 1
 			rslt['B0'] = scores[i][0]
-	elif num <= row * 0.85 and num5 == 0:
-		if num + scores[i + 1][1] > row * 0.85:
+	elif num < row * 0.85 and num5 == 0:
+		if num + scores[i + 1][1] >= row * 0.85:
 			num5 = 1
 			rslt['C+'] = scores[i][0]
 row_id = 1
