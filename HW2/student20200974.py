@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import openpyxl
 
 wb=openpyxl.load_workbook("student.xlsx")
