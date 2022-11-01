@@ -3,7 +3,7 @@ import sys
 
 weekday = ['MON', 'TUE', 'WEN', 'THU', 'FRI', 'SAT', 'SUN']
 sameweek = dict()
-arr = [0 for i in range(200)]
+arr = [0 for i in range(10000)]
 flag = 0
 with open(sys.argv[1], "rt") as fp:
 		for line in fp:
