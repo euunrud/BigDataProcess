@@ -25,7 +25,7 @@ with open(sys.argv[1], "rt") as fp:
 with open(sys.argv[2], "wt") as fp2:
 	keys = sameweek.keys()
 	for key in keys:
-		s1 = key[:5]
+		s1 = key[:6]
 		s2 = key[6:]
 		sv = sameweek[key]
 		fp2.write(s1+","+s2+" "+str(arr[sv]) +","+ str(arr[sv+1])+ "\n")
