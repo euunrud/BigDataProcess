@@ -1,7 +1,7 @@
 import calendar
 import sys
 
-weekday = ['MON', 'TUE', 'WEN', 'THU', 'FRI', 'SAT', 'SUN']
+weekday = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 sameweek = dict()
 arr = [0 for i in range(10000)]
 flag = 0
