@@ -4,20 +4,22 @@ import operator
 import sys
 import numpy as np
 
-trainingF = os.listdir(sys.argv[1])
-list = os.listdir(sys.argv[2])
+trainingFile = os.listdir(sys.argv[1])
+fileList = os.listdir(sys.argv[2])
 
-def readTest(fname):
-	tList = []
-	idx =0
-	data = np.zeros((1, 1024))
-	with open(fname) as f:
-		for line in f.readlines():
-			row = list(line)
-			for i in row:
-				if (i != '\n'):
-					tList.append(float(i))
-	data[idx, :] = tList
+def testMat(filename):
+	f = open(filename)
+	numberOfLines = len(f.readlines()) 
+	data = np.zeros((1, numberOfLines*32))
+	f = open(filename)
+	index = 0
+	testList = []
+	for line in f.readlines():
+		a = list(line)
+		for k in a:
+			if (k != '\n'):
+				testList.append(float(k))
+	data[index, :] = testList
 	return data
 
 def classify0(inX, dataSet, labels, k):
@@ -33,39 +35,40 @@ def classify0(inX, dataSet, labels, k):
 		classCount[voteIlabel] = classCount.get(voteIlabel, 0) + 1
 		sortedClassCount = sorted(classCount.items(), key = operator.itemgetter(1), reverse = True)
 	return sortedClassCount[0][0]
+	
+def fileToMatrix(foldername):
+	f = open(foldername+"/"+trainingFile[0])
+	numberOfLines = len(f.readlines())
+	num = len(trainingFile)
+	mat = np.zeros((num, numberOfLines*32))
+	classLabel = []
+	index = 0
+	for i in range(0, num):
+		f = open(foldername+"/"+trainingFile[i])
+		trainingList = []
+		for line in f.readlines():
+			a = list(line)
+			for j in a:
+				if (j != '\n'):
+					trainingList.append(float(j))
+		mat[index, :] = trainingList
+		fileNum = trainingFile[i].split("_")
+		classLabel.append(int(fileNum[0]))
+		index += 1
+	return mat, classLabel
 
-group, labels = fileToMat(sys.argv[1])
+error = {}
+group, labels = fileToMatrix(sys.argv[1])
 
-def fileToMat(folder):
-	Label = []
-	idx = 0
-	leng = len(trainingF)
-	data = np.zeros((leng, 1024))
-		for i in range(0, leng):
-			f = open(folder+"/"+trainingF[i])
-			tList = []
-			for line in range f.readlines():
-				row = list(line)
-				for k in row:
-					if (k != '\n'):
-						tList.append(float(k))
-			data[idx, :] = tList
-			fileNum = trainingF[i].split("_")
-			Label.append(int(fileNum[0]))
-			idx += 1
-	return data, Label
-
-leng = len(list)
+for i in range(len(fileList)):
+	inputData = testMat(sys.argv[2]+"/"+fileList[i])
+	real = fileList[i].split("_")
+	real = int(real[0])
+	for i in range(1, 21):
+		predict = classify0(inputData, group, labels, i)
+		if (real != int(predict)):
+			error[i] = error.get(i, 0) + 1
+		else:
+			error[i] = error.get(i, 0) + 0
 for i in range(1, 21):
-	total = 0
-	error = 0
-	for j in range(leng):
-		testD = readTest(sys.argv[2]+"/"+list[i])
-		sp= int(list[i].split("_")[0])
-		predict = classify0(testD, group, labels, i)
-		total += 1
-		if a != predict:
-			error += 1
-	rslt = int((error / total) * 100)
-
-	print(rslt)
+	print(math.trunc(int(error[i])/len(fileList)*100))
