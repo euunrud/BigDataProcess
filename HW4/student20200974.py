@@ -4,14 +4,13 @@ import operator
 import sys
 import numpy as np
 
-list = os.listdir(sys.argv[2])
 trainingF = os.listdir(sys.argv[1])
+list = os.listdir(sys.argv[2])
 
 def readTest(fname):
 	tList = []
 	idx =0
-	with open(fname) as f:
-		data = np.zeros((1, len(f.readlines())*32))
+	data = np.zeros((1, 1024))
 	with open(fname) as f:
 		for line in f.readlines():
 			row = list(line)
@@ -43,7 +42,7 @@ def fileToMat(folder):
 	leng = len(trainingF)
 	data = np.zeros((leng, 1024))
 		for i in range(0, leng):
-			with open(folder+"/"+trainingF[i]) as f
+			f = open(folder+"/"+trainingF[i])
 			tList = []
 			for line in range f.readlines():
 				row = list(line)
@@ -56,14 +55,13 @@ def fileToMat(folder):
 			idx += 1
 	return data, Label
 
-total = 0
-error = {}
-
 leng = len(list)
 for i in range(1, 21):
-	testD = readTest(sys.argv[2]+"/"+list[i])
-	sp= int(list[i].split("_")[0])
+	total = 0
+	error = 0
 	for j in range(leng):
+		testD = readTest(sys.argv[2]+"/"+list[i])
+		sp= int(list[i].split("_")[0])
 		predict = classify0(testD, group, labels, i)
 		total += 1
 		if a != predict:
