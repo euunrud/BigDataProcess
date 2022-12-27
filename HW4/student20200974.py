@@ -15,7 +15,7 @@ def readTest(fname):
 	with open(fname) as f:
 		for line in f.readlines():
 			row = list(line)
-			for i in :
+			for i in row:
 				if (i != '\n'):
 					tList.append(float(i))
 	data[idx, :] = tList
@@ -46,8 +46,8 @@ def fileToMat(folder):
 			with open(folder+"/"+trainingF[i]) as f
 			tList = []
 			for line in range f.readlines():
-				l = list(line)
-				for k in l:
+				row = list(line)
+				for k in row:
 					if (k != '\n'):
 						tList.append(float(k))
 			data[idx, :] = tList
